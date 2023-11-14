@@ -20,6 +20,7 @@ import shutil
 import lightning as L
 import numpy as np
 import torch
+from tqdm import tqdm
 
 # support running without installing as a package
 wd = Path(__file__).parent.parent.resolve()
@@ -119,8 +120,9 @@ def train(
     Loosely based on the nanoGPT implementation: https://github.com/karpathy/nanoGPT.
     """
     step_count = 0
-
-    for iter_num in range(max_iters):
+    
+    print(max_iters)
+    for iter_num in tqdm(range(max_iters)):
 
         if step_count <= warmup_iters:
             # linear warmup
